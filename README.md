@@ -36,7 +36,7 @@
 ```json
 {
   "Model": "llama3.2:1b",
-  "Time": "25ms",
+  "Time": "67ms",
   "Response": "Hello, how can I assist you?"
 }
 ```
