@@ -1,4 +1,4 @@
-# Feather AI API
+# 🪶 Feather AI API
 
 **Endpoint:** https://feather.loca.lt/generate  
 
