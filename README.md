@@ -2,11 +2,11 @@
 
 **Endpoint:** https://feather.loca.lt/generate  
 
-> ⚠️ When opening the link in a browser, LocalTunnel may show a warning. You can safely ignore it. The API works normally.  
+> When opening the link in a browser, LocalTunnel may show a warning. You can safely ignore it. The API works normally.  
 
 - **No API key required**  
 - **No rate limits**  
-- **Supports multiple models**  
+- **Supports 2 models**  
 
 ---
 
