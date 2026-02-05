@@ -6,9 +6,14 @@
 
 - **No API key required**  
 - **No rate limits**  
-- **Supports 2 models**  
+- **Supports multiple models**  
 
 ---
+
+## Available Models
+`gemma3:4b`
+`llama3.2:1b`
+`deepseek-r1:8b`
 
 ## Request Format
 
