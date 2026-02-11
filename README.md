@@ -11,9 +11,7 @@
 ---
 
 ## Available Models
-`gemma3:4b`
-`llama3.2:1b`
-`deepseek-r1:8b`
+`llava-llama3:latest`
 
 ## Request Format
 
