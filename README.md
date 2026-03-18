@@ -1,123 +1,88 @@
-# 🪶 Feather AI API
+# 🪶 Feather AI API (Updated)
 
-**Endpoint:** https://feather.loca.lt/generate  
+**Endpoint:**  
+https://feather.loca.lt/api/generate
 
-> When opening the link in a browser, LocalTunnel may show a warning. You can safely ignore it. The API works normally.  
+> Ignore the browser warning from LocalTunnel — the API works normally.
 
-- **No API key required**  
-- **No rate limits**  
-- **Supports multiple models**  
+---
+
+## ⚡ Features
+- No API key required  
+- No rate limits  
+- Fast local inference via Ollama  
 
 ---
 
 ## Available Models
-`llava-llama3:latest`
+```
+llama3.2:1b
+llava-llama3:latest
+```
 
-## Request Format
+---
 
-**Method:** `POST`  
-**Content-Type:** `application/json`  
+## Request
 
-**Body:**
+**Method:** POST  
+**Content-Type:** application/json
 
+### Body
 ```json
 {
   "model": "llama3.2:1b",
-  "prompt": "Hello, how are you?"
+  "prompt": "Write a story about space",
+  "stream": false
 }
 ```
 
 ---
 
-## Response Format
+## Response
 
-```json
+```python
 {
-  "Model": "llama3.2:1b",
-  "Time": "67ms",
-  "Response": "Hello, how can I assist you?"
+  'model': 'llama3.2:1b',
+  'created_at': '2026-03-18T04:49:17.7032948Z',
+  'response': 'In the year 2254, humanity had finally reached for the stars. The world was in the midst of a great migration…',
+  'done': True,
+  'done_reason': 'stop',
+  'context': [ … ],
+  'total_duration': 7898714000,
+  'load_duration': 2758014200,
+  'prompt_eval_count': 30,
+  'prompt_eval_duration': 14499900,
+  'eval_count': 655,
+  'eval_duration': 4737309300
 }
 ```
 
 ---
 
-## Example Usage
-
-### Python
+## Python
 
 ```python
 import requests
-import json
 
-url = "https://feather.loca.lt/generate"
+url = "https://feather.loca.lt/api/generate"
 
 payload = {
-  "model": "llama3.2:1b",
-  "prompt": "Hello, how are you?"
+    "model": "llama3.2:1b",
+    "prompt": "Write a story about space",
+    "stream": False
 }
 
-response = requests.post(url, json=payload)
-data = response.json()
+res = requests.post(url, json=payload)
+data = res.json()
 
-print("Model:", data["Model"])
-print("Time:", data["Time"])
-print("Response:", data["Response"])
+print("Model:", data['model'])
+print("Created at:", data['created_at'])
+print("Response:", data['response'])
+print("Done:", data['done'])
 ```
 
 ---
 
-### JavaScript (Node.js)
-
-```javascript
-import fetch from "node-fetch";
-
-const url = "https://feather.loca.lt/generate";
-
-const payload = {
-  model: "llama3.2:1b",
-  prompt: "Hello, how are you?"
-};
-
-const res = await fetch(url, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload)
-});
-
-const data = await res.json();
-console.log("Model:", data.Model);
-console.log("Time:", data.Time);
-console.log("Response:", data.Response);
-```
-
----
-
-### Lune/Lua
-
-```lua
-local serde = require("@lune/serde")
-local net = require("@lune/net")
-
-local function requestAI(prompt: string, model: string?)
-    model = model or "llama3.2:1b"
-
-    local response = net.request({
-        url = "https://feather.loca.lt/generate",
-        method = "POST",
-        headers = { ["Content-Type"] = "application/json" },
-        body = serde.encode("json", { prompt = prompt, model = model })
-    })
-
-    if not response.ok then
-        return `Error: {response.statusCode} - {response.body}`
-    end
-
-    local decoded = serde.decode("json", response.body)
-    return decoded
-end
-
-local result = requestAI("Hello, how are you?", "llama3.2:1b")
-print("Model:", result.Model)
-print("Time:", result.Time)
-print("Response:", result.Response)
-```
+## ⚠️ Important
+- Only the listed models are supported; any other model will error.  
+- These models can produce unreliable or nonsensical outputs. For better results, combine them with a web search or external knowledge source.
